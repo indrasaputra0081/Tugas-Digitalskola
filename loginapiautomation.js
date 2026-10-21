@@ -6,7 +6,7 @@ describe('API Automation Reqres', function () {
 
   // 1a. POST Login
   it('POST Login - should login successfully', async function () {
-    const response = await fetch('https://reqres.in/api/login', {
+    const response = await fetch('https://belajar-bareng.onrender.com/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ describe('API Automation Reqres', function () {
 
   // 1b. GET User
   it('GET User - should fetch user details', async function () {
-    const response = await fetch('https://reqres.in/api/users/2', {
+    const response = await fetch('https://belajar-bareng.onrender.com/api/users/2', {
       headers: {
         'x-api-key': 'reqres-free-v1',
         'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzkyMTkxMDkwLCJleHAiOjE3OTIxOTQ2OTB9.Ltckf7iu3TeT_aiDABGJT4vdWYwEoR0WvyjPCBEl3j0'
