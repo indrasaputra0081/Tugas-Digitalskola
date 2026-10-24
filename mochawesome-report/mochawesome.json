@@ -1,0 +1,215 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-24T13:47:14.227Z",
+    "end": "2026-10-24T13:47:27.085Z",
+    "duration": 12858,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "87292431-86bf-474e-ae62-a79b642a272c",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "77b9b667-5ca2-45b5-ac8f-f8a1d49e21ae",
+          "title": "Fitur Add User",
+          "fullFile": "C:\\Users\\HP\\UiTesting\\test\\addUser.js",
+          "file": "\\test\\addUser.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Fitur Add User\"",
+              "fullTitle": "Fitur Add User \"before all\" hook in \"Fitur Add User\"",
+              "timedOut": false,
+              "duration": 6124,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.manage().window().maximize();\nawait driver.get(BASE_URL);\nawait driver.wait(until.elementLocated(By.css('[data-testid=\"username-input\"]')), 60000);\nawait driver.findElement(By.css('[data-testid=\"username-input\"]')).sendKeys('admin');\nawait driver.findElement(By.css('[data-testid=\"password-input\"]')).sendKeys('admin');\nawait driver.findElement(By.css('[data-testid=\"login-button\"]')).click();\nawait driver.wait(until.urlContains('/users'), 15000);",
+              "err": {},
+              "uuid": "3ec5ff1a-f370-4e00-bfb9-3646ef998d80",
+              "parentUUID": "77b9b667-5ca2-45b5-ac8f-f8a1d49e21ae",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Fitur Add User\"",
+              "fullTitle": "Fitur Add User \"after all\" hook in \"Fitur Add User\"",
+              "timedOut": false,
+              "duration": 398,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "4a47d83f-ef1f-4f7a-9187-6ebd5ca961d3",
+              "parentUUID": "77b9b667-5ca2-45b5-ac8f-f8a1d49e21ae",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Berhasil menambahkan user baru",
+              "fullTitle": "Fitur Add User Berhasil menambahkan user baru",
+              "timedOut": false,
+              "duration": 1654,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newUsername = 'qa' + randomLetters(8); // contoh: qaxkdmwpre\nconst newAge = '25';\n// Action: buka halaman Add\nconst buttonAdd = await driver.wait(until.elementLocated(By.css('[data-testid=\"add-button\"]')), 15000);\nawait buttonAdd.click();\nawait driver.wait(until.urlContains('/add'), 15000);\n// Assertion 1: Add Users\nconst pageTitle = await driver.wait(until.elementLocated(By.xpath(\"//h2[text()='Add Users']\")), 15000);\nassert.strictEqual(await pageTitle.getText(), 'Add Users');\n// Action: isi form lalu submit\nawait driver.findElement(By.css('[data-testid=\"username-input\"]')).sendKeys(newUsername);\nawait driver.findElement(By.css('[data-testid=\"age-input\"]')).sendKeys(newAge);\nawait driver.findElement(By.css('[data-testid=\"submit-button\"]')).click();\n// Assertion 2: notifikasi sukses muncul\nconst toastSuccess = await driver.wait(\n  until.elementLocated(By.css('[data-testid=\"toast-item-success-added\"]')),\n  15000\n);\nawait driver.wait(until.elementIsVisible(toastSuccess), 15000); \nassert.strictEqual(await toastSuccess.isDisplayed(), true);\n// Assertion 3:  kosong lagi setelah submit\nconst usernameValue = await driver.findElement(By.css('[data-testid=\"username-input\"]')).getAttribute('value');\nassert.strictEqual(usernameValue, '');\n// Assertion 4: user baru \nawait driver.findElement(By.css('[data-testid=\"list-button\"]')).click();\nawait driver.wait(until.urlContains('/users'), 15000);\nconst newUserCard = await driver.wait(\n  until.elementLocated(By.xpath(`//h3[text()='${newUsername}']`)),\n  15000\n);\nassert.strictEqual(await newUserCard.isDisplayed(), true);",
+              "err": {},
+              "uuid": "e9afba9d-7511-48bc-815e-d6c81c4a5ce1",
+              "parentUUID": "77b9b667-5ca2-45b5-ac8f-f8a1d49e21ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e9afba9d-7511-48bc-815e-d6c81c4a5ce1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1654,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "70019d2a-18ac-4902-90cc-e65c1f41ffd4",
+          "title": "Fitur Login",
+          "fullFile": "C:\\Users\\HP\\UiTesting\\test\\login.js",
+          "file": "\\test\\login.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Fitur Login\"",
+              "fullTitle": "Fitur Login \"before each\" hook in \"Fitur Login\"",
+              "timedOut": false,
+              "duration": 3721,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.manage().window().maximize();\nawait driver.get(BASE_URL);\nawait driver.wait(until.elementLocated(By.css('[data-testid=\"username-input\"]')), 60000);",
+              "err": {},
+              "uuid": "21700037-9253-4f5b-b0c3-292621e74265",
+              "parentUUID": "70019d2a-18ac-4902-90cc-e65c1f41ffd4",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Fitur Login\"",
+              "fullTitle": "Fitur Login \"after each\" hook in \"Fitur Login\"",
+              "timedOut": false,
+              "duration": 330,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "b941359e-1bdc-4e0d-aa4f-2de51a069f42",
+              "parentUUID": "70019d2a-18ac-4902-90cc-e65c1f41ffd4",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Login berhasil dengan username dan password valid",
+              "fullTitle": "Fitur Login Login berhasil dengan username dan password valid",
+              "timedOut": false,
+              "duration": 611,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Element\nconst inputUsername = await driver.findElement(By.css('[data-testid=\"username-input\"]'));\nconst inputPassword = await driver.findElement(By.css('[data-testid=\"password-input\"]'));\nconst buttonLogin = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\n// Action\nawait inputUsername.sendKeys('admin');\nawait inputPassword.sendKeys('admin');\nawait buttonLogin.click();\n// Assertion 1: users\nawait driver.wait(until.urlContains('/users'), 15000);\nconst currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl, `${BASE_URL}/users`);\n// Assertion 2: List Users\nconst pageTitle = await driver.wait(until.elementLocated(By.xpath(\"//h2[text()='List Users']\")), 15000);\nassert.strictEqual(await pageTitle.getText(), 'List Users');\n// Assertion 3: tombol Add \nconst buttonAdd = await driver.findElement(By.css('[data-testid=\"add-button\"]'));\nassert.strictEqual(await buttonAdd.isDisplayed(), true);",
+              "err": {},
+              "uuid": "e6ae9722-5bae-42b7-a27a-3896166a04ea",
+              "parentUUID": "70019d2a-18ac-4902-90cc-e65c1f41ffd4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e6ae9722-5bae-42b7-a27a-3896166a04ea"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 611,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
